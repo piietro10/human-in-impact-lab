@@ -8,3 +8,10 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Architecture & design decisions
+
+- Brand tokens live in `src/styles.css` (`@theme inline` + `:root`): palette is locked to #000000 / #2F80FF / #FFFFFF on warm off-white, font is Inter only. Never hardcode raw colors in components — use semantic tokens (`bg-ink`, `text-primary`, `bg-tint`, …).
+- The Human In logo is an inline SVG component (`src/components/hi-logo.tsx`) and `public/favicon.svg` (drawn shapes, no font dependency). Do not replace it with generated images.
+- Headlines end with a blue dot (`text-primary` "`.`" or the `headline-dot` utility) — recurring motif from the logo's blue dot on the "i".
+- Contact form uses a `mailto:` submit with placeholder `contato@humanin.com.br` until the user provides the real address.
