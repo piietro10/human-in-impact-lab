@@ -3,14 +3,16 @@ import { useState } from "react";
 import {
   ArrowRight,
   ArrowUpRight,
-  BookOpen,
-  Heart,
-  Leaf,
+  Feather,
+  HeartHandshake,
+  Lightbulb,
   Menu,
-  Recycle,
+  Repeat,
   Smartphone,
+  Sparkles,
   Users,
   X,
+  Zap,
   type LucideIcon,
 } from "lucide-react";
 
@@ -26,13 +28,16 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "A Human In desenvolve aplicações de impacto social, colaborando no combate a problemas socioambientais por meio da mudança individual.",
+          "A Human In desenvolve aplicações com o objetivo de causar impacto no âmbito social, colaborando no combate a problemas socioambientais por meio da mudança individual.",
       },
-      { property: "og:title", content: "Human In — Tecnologia para a mudança individual" },
+      {
+        property: "og:title",
+        content: "Human In — Tecnologia para a mudança individual",
+      },
       {
         property: "og:description",
         content:
-          "Aplicações de tecnologia com propósito: impacto social e combate a problemas socioambientais por meio da mudança individual.",
+          "Empresa de tecnologia de impacto social. Humanização e inovação no combate a problemas socioambientais por meio da mudança individual.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -44,7 +49,8 @@ export const Route = createFileRoute("/")({
 const NAV_LINKS = [
   { label: "Quem somos", href: "#quem-somos" },
   { label: "Como atuamos", href: "#como-atuamos" },
-  { label: "Nossas causas", href: "#nossas-causas" },
+  { label: "Nossa essência", href: "#essencia" },
+  { label: "Produtos", href: "#produtos" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -52,26 +58,46 @@ const PILLARS: { icon: LucideIcon; title: string; text: string }[] = [
   {
     icon: Smartphone,
     title: "Aplicações com propósito",
-    text: "Desenhamos e desenvolvemos produtos digitais que colocam o impacto social no centro da experiência — tecnologia a serviço de pessoas.",
+    text: "Desenvolvemos aplicações com o objetivo de causar impacto no âmbito social — tecnologia a serviço de pessoas, não de métricas.",
+  },
+  {
+    icon: Repeat,
+    title: "Método ágil",
+    text: "Trabalhamos com Scrum, em Sprints semanais, direcionando tarefas para cada integrante de acordo com sua capacidade e especialização.",
   },
   {
     icon: Users,
     title: "Mudança individual",
-    text: "Todo produto nosso parte de uma pergunta simples: como essa pessoa pode agir, hoje, de forma concreta? Acreditamos que grandes transformações começam em gestos pequenos.",
-  },
-  {
-    icon: Leaf,
-    title: "Impacto socioambiental",
-    text: "Do consumo consciente ao cuidado com a comunidade, direcionamos nosso esforço para os problemas socioambientais mais urgentes do nosso tempo.",
+    text: "Analisamos problemas reais enfrentados pela população e aplicamos inovação tecnológica para auxiliar as pessoas a combatê-los, criando uma rede em prol de causas em comum.",
   },
 ];
 
-const CAUSES: { icon: LucideIcon; label: string }[] = [
-  { icon: Leaf, label: "Meio ambiente e clima" },
-  { icon: Recycle, label: "Consumo consciente" },
-  { icon: Users, label: "Comunidades e inclusão" },
-  { icon: BookOpen, label: "Educação" },
-  { icon: Heart, label: "Bem-estar" },
+const VALUES: { icon: LucideIcon; name: string; text: string }[] = [
+  {
+    icon: HeartHandshake,
+    name: "Humanização",
+    text: "O humano faz uso da tecnologia, e não o contrário.",
+  },
+  {
+    icon: Lightbulb,
+    name: "Inovação",
+    text: "Criatividade para resolver problemas com tecnologia.",
+  },
+  {
+    icon: Feather,
+    name: "Simplicidade",
+    text: "Entregar apenas o necessário para agregar valor.",
+  },
+  {
+    icon: Zap,
+    name: "Eficiência",
+    text: "Soluções rápidas em cumprir seu propósito.",
+  },
+  {
+    icon: Sparkles,
+    name: "Colaboração",
+    text: "A realidade social muda a partir da mudança individual.",
+  },
 ];
 
 function Index() {
@@ -88,7 +114,8 @@ function Index() {
         <Hero />
         <About />
         <HowWeAct />
-        <Causes />
+        <Essence />
+        <Products />
         <CtaBand />
         <Contact />
       </main>
@@ -112,11 +139,11 @@ function SiteHeader({
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
         <a href="#" className="flex items-center gap-3" onClick={onCloseMenu}>
-          <HiLogo className="size-9 text-ink" />
+          <HiLogo className="size-9" />
           <span className="text-lg font-extrabold tracking-tight">Human In</span>
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-7 lg:flex">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -135,7 +162,7 @@ function SiteHeader({
         </nav>
 
         <button
-          className="inline-flex size-10 items-center justify-center rounded-full border border-border md:hidden"
+          className="inline-flex size-10 items-center justify-center rounded-full border border-border lg:hidden"
           aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
           onClick={onToggleMenu}
         >
@@ -144,7 +171,7 @@ function SiteHeader({
       </div>
 
       {menuOpen && (
-        <nav className="border-t border-border bg-background px-5 pb-6 pt-2 md:hidden">
+        <nav className="border-t border-border bg-background px-5 pb-6 pt-2 lg:hidden">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -189,23 +216,24 @@ function Hero() {
             <span className="text-primary">.</span>
           </h1>
           <p className="mt-6 max-w-lg text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Somos a Human In: uma empresa de tecnologia que desenvolve aplicações
-            para causar impacto social, colaborando no combate a problemas
-            socioambientais por meio da mudança individual.
+            Somos a Human In: uma empresa de tecnologia focada no
+            desenvolvimento de aplicações com o objetivo de causar impacto no
+            âmbito social, colaborando no combate a problemas socioambientais
+            por meio da mudança individual.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#quem-somos"
               className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
             >
-              Conheça nossa missão
+              Conheça nossa história
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
-              href="#contato"
+              href="#produtos"
               className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
             >
-              Fale com a gente
+              Ver nossos produtos
               <ArrowUpRight className="size-4" />
             </a>
           </div>
@@ -240,47 +268,66 @@ function About() {
             Quem somos
           </p>
           <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
-            Tecnologia com propósito humano
+            Humanização e inovação
             <span className="text-primary">.</span>
           </h2>
           <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
             <p>
-              A Human In é uma empresa de tecnologia focada no desenvolvimento de
-              aplicações com um objetivo claro: causar impacto no âmbito social.
+              A Human In é formada por um grupo de cinco estudantes do IFSP
+              campus São Miguel Paulista, do curso de Informática para Internet,
+              da turma ingressante em 2023.
             </p>
             <p>
-              Acreditamos que os grandes desafios socioambientais — das mudanças
-              climáticas à desigualdade — só serão enfrentados quando cada pessoa
-              tiver, na palma da mão, formas simples e concretas de agir. Por
-              isso, construímos produtos que transformam intenção em hábito, e
-              hábito em mudança coletiva.
+              Analisamos problemas reais enfrentados pela população e pensamos
+              maneiras de aplicar inovação tecnológica para auxiliar as pessoas
+              no combate a tais problemas — de forma a criar uma rede em prol de
+              causas em comum, através da participação individual.
+            </p>
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-border bg-card p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+              Nossa história
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-ink-soft">
+              A empresa surgiu em <strong className="text-foreground">2025</strong>,
+              durante a disciplina de Projeto Integrador, com o nome{" "}
+              <strong className="text-foreground">AB Studios</strong> — em
+              homenagem a um momento importante na vida de um integrante da
+              equipe. Em <strong className="text-foreground">2026</strong>,
+              realizamos uma reformulação do nome e da marca, para representar
+              de forma clara dois dos nossos principais valores:{" "}
+              <strong className="text-foreground">humanização</strong> (Human) e{" "}
+              <strong className="text-foreground">inovação</strong> (In).
             </p>
           </div>
         </div>
 
         <div className="flex flex-col justify-center gap-4">
-          <blockquote className="rounded-2xl border border-border bg-card p-6">
-            <p className="text-lg font-semibold leading-snug">
-              “Nenhuma mudança é pequena demais quando somada a milhões de
-              pessoas.”
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <p className="text-sm font-bold tracking-tight">2025</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Nasce a <span className="font-semibold text-foreground">AB Studios</span>,
+              no Projeto Integrador do IFSP.
             </p>
-            <p className="mt-3 text-sm font-medium text-muted-foreground">
-              A crença que guia cada produto que construímos.
+          </div>
+          <div className="rounded-2xl border border-primary/40 bg-tint p-6">
+            <p className="text-sm font-bold tracking-tight text-primary">2026</p>
+            <p className="mt-1 text-sm text-accent-foreground">
+              Renascemos como <span className="font-semibold">Human In</span>:
+              humanização e inovação na identidade da marca.
             </p>
-          </blockquote>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="rounded-2xl border border-border bg-card p-5">
-              <p className="text-3xl font-extrabold text-primary">1:1</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Tecnologia feita pessoa a pessoa
+          </div>
+          <div className="rounded-2xl border border-border bg-card p-6">
+            <div className="flex items-center gap-3">
+              <Users className="size-5 text-primary" />
+              <p className="text-sm font-semibold">
+                5 estudantes · Informática para Internet
               </p>
             </div>
-            <div className="rounded-2xl border border-border bg-card p-5">
-              <p className="text-3xl font-extrabold text-primary">∞</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Impacto que se multiplica em rede
-              </p>
-            </div>
+            <p className="mt-2 text-sm text-muted-foreground">
+              IFSP campus São Miguel Paulista, turma ingressante em 2023.
+            </p>
           </div>
         </div>
       </div>
@@ -328,45 +375,156 @@ function HowWeAct() {
             </article>
           ))}
         </div>
+
+        <blockquote className="mx-auto mt-14 max-w-3xl rounded-4xl border border-border bg-card px-8 py-10 text-center">
+          <p className="text-2xl font-bold leading-snug tracking-tight sm:text-3xl">
+            Nosso público não tem restrição de gênero, idade ou situação — nos
+            interessam as pessoas dispostas a mudar a si mesmas para mudar o
+            mundo
+            <span className="text-primary">.</span>
+          </p>
+          <p className="mt-4 text-sm font-medium text-muted-foreground">
+            Para quem construímos.
+          </p>
+        </blockquote>
       </div>
     </section>
   );
 }
 
-/* ---------------------------------- Causes --------------------------------- */
+/* --------------------------------- Essence --------------------------------- */
 
-function Causes() {
+function Essence() {
   return (
-    <section id="nossas-causas" className="scroll-mt-20 border-t border-border/70">
+    <section id="essencia" className="scroll-mt-20 border-t border-border/70">
       <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              Nossas causas
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Nossa essência
+          </p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            Missão, visão e valores
+            <span className="text-primary">.</span>
+          </h2>
+        </div>
+
+        <div className="mt-10 grid gap-5 lg:grid-cols-2">
+          <article className="rounded-3xl border border-border bg-card p-7">
+            <h3 className="text-xl font-bold tracking-tight">Missão</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Produzir soluções tecnológicas efetivas de mobilização e mudança
+              individual, conduzindo os usuários a atitudes que contribuam para
+              a transformação da realidade social e façam do mundo um lugar
+              melhor.
             </p>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Onde fazemos a diferença
-              <span className="text-primary">.</span>
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground">
-              Escolhemos as frentes em que a mudança individual tem o maior
-              poder de multiplicação. Cada causa orienta os produtos que
-              desenhamos e as parcerias que buscamos.
+          </article>
+          <article className="rounded-3xl border border-border bg-card p-7">
+            <h3 className="text-xl font-bold tracking-tight">Visão</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Em um mundo de excesso de informação e de designs predatórios que
+              manipulam a atenção, queremos trazer uma visão de tecnologia como
+              ferramenta para auxiliar humanos na solução de problemas reais —
+              não um produto sem impacto, feito apenas para ser consumido e
+              vendido.
+            </p>
+          </article>
+        </div>
+
+        <h3 className="mt-14 text-lg font-bold tracking-tight">Nossos valores</h3>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+          {VALUES.map((value) => (
+            <div
+              key={value.name}
+              className="rounded-2xl border border-border bg-card p-5 transition-colors hover:border-primary/60"
+            >
+              <span className="inline-flex size-10 items-center justify-center rounded-xl bg-tint text-primary">
+                <value.icon className="size-5" />
+              </span>
+              <p className="mt-3 font-bold">{value.name}</p>
+              <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                {value.text}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-14 grid gap-5 md:grid-cols-2">
+          <blockquote className="rounded-3xl border border-border bg-card p-8">
+            <p className="text-lg font-semibold leading-snug">
+              “Seja a mudança que você quer ver no mundo.”
+            </p>
+            <p className="mt-3 text-sm font-medium text-muted-foreground">
+              Mahatma Gandhi
+            </p>
+          </blockquote>
+          <blockquote className="rounded-3xl border border-border bg-card p-8">
+            <p className="text-lg font-semibold leading-snug">
+              “Nenhum de nós, incluindo eu, jamais faz grandes coisas. Mas todos
+              podemos fazer pequenas coisas, com grande amor, e juntos podemos
+              fazer algo maravilhoso.”
+            </p>
+            <p className="mt-3 text-sm font-medium text-muted-foreground">
+              Madre Teresa de Calcutá
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* --------------------------------- Products -------------------------------- */
+
+function Products() {
+  return (
+    <section
+      id="produtos"
+      className="scroll-mt-20 border-t border-border/70 bg-secondary/50"
+    >
+      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+        <div className="max-w-2xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Produtos
+          </p>
+          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            O que estamos construindo
+            <span className="text-primary">.</span>
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            Cada aplicação da Human In nasce de um problema real e de uma
+            pergunta: como essa pessoa pode agir, hoje, de forma concreta?
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-5 md:grid-cols-2">
+          <article className="group flex flex-col rounded-3xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_40px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)]">
+            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-semibold text-primary">
+              Produto Human In
+            </span>
+            <h3 className="mt-5 text-3xl font-extrabold tracking-tight">
+              Planpaz<span className="text-primary">.</span>
+            </h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+              A primeira aplicação da Human In — feita para transformar
+              intenções em atitudes no dia a dia.
+            </p>
+            <a
+              href="#contato"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+            >
+              Saiba mais
+              <ArrowUpRight className="size-4" />
+            </a>
+          </article>
+          <div className="flex flex-col items-start justify-center rounded-3xl border border-dashed border-border bg-card/50 p-8">
+            <p className="text-2xl font-extrabold tracking-tight text-ink-soft">
+              Mais produtos em caminho<span className="text-primary">.</span>
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Seguimos analisando problemas reais e desenvolvendo novas
+              aplicações — em Sprints semanais, como sempre fizemos.
             </p>
           </div>
-          <ul className="grid gap-3">
-            {CAUSES.map((cause) => (
-              <li
-                key={cause.label}
-                className="flex items-center gap-4 rounded-2xl border border-border bg-card px-5 py-4 transition-colors hover:border-primary/60"
-              >
-                <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-tint text-primary">
-                  <cause.icon className="size-5" />
-                </span>
-                <span className="font-semibold">{cause.label}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
@@ -487,7 +645,7 @@ function SiteFooter() {
     <footer className="border-t border-border/70">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 px-5 py-10 sm:px-8 md:flex-row">
         <div className="flex items-center gap-3">
-          <HiLogo className="size-8 text-ink" />
+          <HiLogo className="size-8" />
           <span className="font-extrabold tracking-tight">Human In</span>
         </div>
         <p className="text-sm text-muted-foreground">
