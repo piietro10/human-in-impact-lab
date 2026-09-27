@@ -10,6 +10,7 @@ import {
   Repeat,
   Smartphone,
   Sparkles,
+  UserRound,
   Users,
   X,
   Zap,
@@ -18,6 +19,7 @@ import {
 
 import { HiLogo } from "@/components/hi-logo";
 import heroImg from "@/assets/hero.jpg";
+import planpazLogo from "@/assets/planpaz-logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -46,12 +48,23 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+// TODO: substituir pelo endereço real do site do Planpaz
+const PLANPAZ_URL = "https://planpaz.com.br";
+
 const NAV_LINKS = [
   { label: "Quem somos", href: "#quem-somos" },
   { label: "Como atuamos", href: "#como-atuamos" },
   { label: "Nossa essência", href: "#essencia" },
   { label: "Produtos", href: "#produtos" },
   { label: "Contato", href: "#contato" },
+];
+
+const TEAM = [
+  "Integrante 1",
+  "Integrante 2",
+  "Integrante 3",
+  "Integrante 4",
+  "Integrante 5",
 ];
 
 const PILLARS: { icon: LucideIcon; title: string; text: string }[] = [
