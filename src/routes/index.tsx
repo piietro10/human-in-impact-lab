@@ -341,8 +341,34 @@ function About() {
             <p className="mt-2 text-sm text-muted-foreground">
               IFSP campus São Miguel Paulista, turma ingressante em 2023.
             </p>
+        </div>
+
+        <div className="mt-16">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Nossa equipe
+          </p>
+          <h3 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
+            Quem faz a Human In
+            <span className="text-primary">.</span>
+          </h3>
+          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+            {TEAM.map((member) => (
+              <article
+                key={member}
+                className="flex flex-col items-center rounded-3xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50"
+              >
+                <span className="inline-flex size-24 items-center justify-center rounded-full bg-tint text-primary">
+                  <UserRound className="size-10" />
+                </span>
+                <p className="mt-4 font-bold tracking-tight">{member}</p>
+                <p className="mt-1 text-xs text-muted-foreground">
+                  Foto em breve
+                </p>
+              </article>
+            ))}
           </div>
         </div>
+      </div>
       </div>
     </section>
   );
@@ -511,21 +537,35 @@ function Products() {
 
         <div className="mt-10 grid gap-5 md:grid-cols-2">
           <article className="group flex flex-col rounded-3xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_40px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)]">
-            <span className="inline-flex w-fit items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-semibold text-primary">
-              Produto Human In
-            </span>
+            <div className="flex items-start justify-between gap-4">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-semibold text-primary">
+                Produto Human In
+              </span>
+              <img
+                src={planpazLogo}
+                alt="Logo do Planpaz"
+                width={128}
+                height={128}
+                loading="lazy"
+                className="size-16 shrink-0 rounded-2xl border border-border bg-background object-cover p-1.5"
+              />
+            </div>
             <h3 className="mt-5 text-3xl font-extrabold tracking-tight">
               Planpaz<span className="text-primary">.</span>
             </h3>
             <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
-              A primeira aplicação da Human In — feita para transformar
-              intenções em atitudes no dia a dia.
+              O Planpaz é a primeira aplicação da Human In, criado para
+              transformar intenções em ações no dia a dia. Ele conduz cada
+              pessoa a pequenas atitudes que trazem mais paz para a própria
+              rotina — e, a partir dela, para a comunidade ao redor.
             </p>
             <a
-              href="#contato"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full border border-border px-5 py-2.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+              href={PLANPAZ_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
             >
-              Saiba mais
+              Visitar o site do Planpaz
               <ArrowUpRight className="size-4" />
             </a>
           </article>
