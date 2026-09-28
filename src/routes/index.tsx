@@ -52,10 +52,11 @@ export const Route = createFileRoute("/")({
 const PLANPAZ_URL = "https://planpaz.com.br";
 
 const NAV_LINKS = [
+  { label: "Produtos", href: "#produtos" },
   { label: "Quem somos", href: "#quem-somos" },
   { label: "Como atuamos", href: "#como-atuamos" },
   { label: "Nossa essência", href: "#essencia" },
-  { label: "Produtos", href: "#produtos" },
+  { label: "Equipe", href: "#equipe" },
   { label: "Contato", href: "#contato" },
 ];
 
@@ -125,11 +126,12 @@ function Index() {
       />
       <main>
         <Hero />
+        <Products />
         <About />
         <HowWeAct />
         <Essence />
-        <Products />
         <CtaBand />
+        <Team />
         <Contact />
       </main>
       <SiteFooter />
@@ -150,7 +152,7 @@ function SiteHeader({
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-border/70 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8">
+      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#" className="flex items-center gap-3" onClick={onCloseMenu}>
           <HiLogo className="size-9" />
           <span className="text-lg font-extrabold tracking-tight">Human In</span>
@@ -184,7 +186,7 @@ function SiteHeader({
       </div>
 
       {menuOpen && (
-        <nav className="border-t border-border bg-background px-5 pb-6 pt-2 lg:hidden">
+        <nav className="border-t border-border bg-background px-4 sm:px-6 pb-6 pt-2 lg:hidden">
           {NAV_LINKS.map((link) => (
             <a
               key={link.href}
@@ -218,7 +220,7 @@ function Hero() {
         aria-hidden="true"
         className="pointer-events-none absolute -top-32 right-[-10%] size-[480px] rounded-full bg-tint blur-3xl"
       />
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pt-20 md:grid-cols-2 md:gap-8 md:pb-24 lg:gap-16">
+      <div className="mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pb-16 pt-14 sm:px-8 sm:pt-20 lg:grid-cols-2 md:pb-24">
         <div className="relative">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.14em] text-ink-soft">
             <span className="size-2 rounded-full bg-primary" />
@@ -237,14 +239,14 @@ function Hero() {
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <a
               href="#quem-somos"
-              className="group inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
+              className="group inline-flex items-center gap-2 rounded-xl bg-ink px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
             >
               Conheça nossa história
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
             </a>
             <a
               href="#produtos"
-              className="inline-flex items-center gap-1.5 rounded-full border border-border bg-card px-6 py-3.5 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
+              className="inline-flex items-center gap-1.5 rounded-xl border border-border bg-card px-6 py-3 text-sm font-semibold transition-colors hover:border-primary hover:text-primary"
             >
               Ver nossos produtos
               <ArrowUpRight className="size-4" />
@@ -275,16 +277,16 @@ function Hero() {
 function About() {
   return (
     <section id="quem-somos" className="scroll-mt-20 border-t border-border/70">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-5 py-16 sm:px-8 md:py-24 lg:grid-cols-[1.1fr_0.9fr] lg:gap-20">
-        <div>
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <div className="max-w-3xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             Quem somos
           </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
             Humanização e inovação
             <span className="text-primary">.</span>
           </h2>
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground">
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
             <p>
               A Human In é formada por um grupo de cinco estudantes do IFSP
               campus São Miguel Paulista, do curso de Informática para Internet,
@@ -297,78 +299,84 @@ function About() {
               causas em comum, através da participação individual.
             </p>
           </div>
-
-          <div className="mt-8 rounded-2xl border border-border bg-card p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-              Nossa história
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-ink-soft">
-              A empresa surgiu em <strong className="text-foreground">2025</strong>,
-              durante a disciplina de Projeto Integrador, com o nome{" "}
-              <strong className="text-foreground">AB Studios</strong> — em
-              homenagem a um momento importante na vida de um integrante da
-              equipe. Em <strong className="text-foreground">2026</strong>,
-              realizamos uma reformulação do nome e da marca, para representar
-              de forma clara dois dos nossos principais valores:{" "}
-              <strong className="text-foreground">humanização</strong> (Human) e{" "}
-              <strong className="text-foreground">inovação</strong> (In).
-            </p>
-          </div>
         </div>
 
-        <div className="flex flex-col justify-center gap-4">
-          <div className="rounded-2xl border border-border bg-card p-6">
+        <div className="mt-10 rounded-2xl border border-border/60 bg-card p-6 shadow-sm sm:p-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+            Nossa história
+          </p>
+          <p className="mt-3 text-base leading-relaxed text-ink-soft">
+            A empresa surgiu em <strong className="text-foreground">2025</strong>,
+            durante a disciplina de Projeto Integrador, com o nome{" "}
+            <strong className="text-foreground">AB Studios</strong> — em
+            homenagem a um momento importante na vida de um integrante da
+            equipe. Em <strong className="text-foreground">2026</strong>,
+            realizamos uma reformulação do nome e da marca, para representar
+            de forma clara dois dos nossos principais valores:{" "}
+            <strong className="text-foreground">humanização</strong> (Human) e{" "}
+            <strong className="text-foreground">inovação</strong> (In).
+          </p>
+        </div>
+
+        <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <p className="text-sm font-bold tracking-tight">2025</p>
-            <p className="mt-1 text-sm text-muted-foreground">
+            <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
               Nasce a <span className="font-semibold text-foreground">AB Studios</span>,
               no Projeto Integrador do IFSP.
             </p>
           </div>
-          <div className="rounded-2xl border border-primary/40 bg-tint p-6">
+          <div className="rounded-2xl border border-primary/40 bg-tint p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <p className="text-sm font-bold tracking-tight text-primary">2026</p>
-            <p className="mt-1 text-sm text-accent-foreground">
+            <p className="mt-1 text-sm leading-relaxed text-accent-foreground">
               Renascemos como <span className="font-semibold">Human In</span>:
               humanização e inovação na identidade da marca.
             </p>
           </div>
-          <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <div className="flex items-center gap-3">
-              <Users className="size-5 text-primary" />
+              <Users className="size-5 shrink-0 text-primary" />
               <p className="text-sm font-semibold">
                 5 estudantes · Informática para Internet
               </p>
             </div>
-            <p className="mt-2 text-sm text-muted-foreground">
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
               IFSP campus São Miguel Paulista, turma ingressante em 2023.
             </p>
-        </div>
-
-        <div className="mt-16">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
-            Nossa equipe
-          </p>
-          <h3 className="mt-3 text-2xl font-extrabold tracking-tight sm:text-3xl">
-            Quem faz a Human In
-            <span className="text-primary">.</span>
-          </h3>
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {TEAM.map((member) => (
-              <article
-                key={member}
-                className="flex flex-col items-center rounded-3xl border border-border bg-card p-6 text-center transition-colors hover:border-primary/50"
-              >
-                <span className="inline-flex size-24 items-center justify-center rounded-full bg-tint text-primary">
-                  <UserRound className="size-10" />
-                </span>
-                <p className="mt-4 font-bold tracking-tight">{member}</p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                  Foto em breve
-                </p>
-              </article>
-            ))}
           </div>
         </div>
       </div>
+    </section>
+  );
+}
+
+/* ---------------------------------- Team ----------------------------------- */
+
+function Team() {
+  return (
+    <section id="equipe" className="scroll-mt-20 border-t border-border/70">
+      <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6 md:py-24 lg:px-8">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
+          Nossa equipe
+        </p>
+        <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
+          Quem faz a Human In
+          <span className="text-primary">.</span>
+        </h2>
+        <div className="mt-10 grid w-full grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-5">
+          {TEAM.map((member) => (
+            <article
+              key={member}
+              className="flex flex-col items-center rounded-2xl border border-border/60 bg-card p-6 text-center shadow-sm transition-all duration-300 hover:shadow-md sm:p-8"
+            >
+              <span className="inline-flex aspect-square w-full max-w-28 items-center justify-center rounded-full bg-tint text-primary">
+                <UserRound className="size-10" />
+              </span>
+              <p className="mt-4 font-bold tracking-tight">{member}</p>
+              <p className="mt-1 text-xs text-muted-foreground">Foto em breve</p>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
@@ -382,12 +390,12 @@ function HowWeAct() {
       id="como-atuamos"
       className="scroll-mt-20 border-t border-border/70 bg-secondary/50"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-24">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             Como atuamos
           </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
             Da intenção à ação
             <span className="text-primary">.</span>
           </h2>
@@ -396,11 +404,11 @@ function HowWeAct() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
+        <div className="mt-10 grid w-full grid-cols-1 gap-8 md:grid-cols-3">
           {PILLARS.map((pillar) => (
             <article
               key={pillar.title}
-              className="group rounded-3xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_40px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)]"
+              className="group rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_40px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)]"
             >
               <div className="inline-flex size-12 items-center justify-center rounded-2xl bg-tint text-primary">
                 <pillar.icon className="size-6" />
@@ -436,19 +444,19 @@ function HowWeAct() {
 function Essence() {
   return (
     <section id="essencia" className="scroll-mt-20 border-t border-border/70">
-      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-24">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             Nossa essência
           </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
             Missão, visão e valores
             <span className="text-primary">.</span>
           </h2>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <article className="rounded-3xl border border-border bg-card p-7">
+        <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
+          <article className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <h3 className="text-xl font-bold tracking-tight">Missão</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Produzir soluções tecnológicas efetivas de mobilização e mudança
@@ -457,7 +465,7 @@ function Essence() {
               melhor.
             </p>
           </article>
-          <article className="rounded-3xl border border-border bg-card p-7">
+          <article className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <h3 className="text-xl font-bold tracking-tight">Visão</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Em um mundo de excesso de informação e de designs predatórios que
@@ -487,8 +495,8 @@ function Essence() {
           ))}
         </div>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
-          <blockquote className="rounded-3xl border border-border bg-card p-8">
+        <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2">
+          <blockquote className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <p className="text-lg font-semibold leading-snug">
               “Seja a mudança que você quer ver no mundo.”
             </p>
@@ -496,7 +504,7 @@ function Essence() {
               Mahatma Gandhi
             </p>
           </blockquote>
-          <blockquote className="rounded-3xl border border-border bg-card p-8">
+          <blockquote className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8">
             <p className="text-lg font-semibold leading-snug">
               “Nenhum de nós, incluindo eu, jamais faz grandes coisas. Mas todos
               podemos fazer pequenas coisas, com grande amor, e juntos podemos
@@ -520,12 +528,12 @@ function Products() {
       id="produtos"
       className="scroll-mt-20 border-t border-border/70 bg-secondary/50"
     >
-      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-24">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
             Produtos
           </p>
-          <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
             O que estamos construindo
             <span className="text-primary">.</span>
           </h2>
@@ -535,8 +543,8 @@ function Products() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
-          <article className="group flex flex-col rounded-3xl border border-border bg-card p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_40px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)]">
+        <div className="mt-10 grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+          <article className="group flex flex-col rounded-2xl border border-border/60 bg-card p-6 shadow-sm transition-all duration-300 hover:shadow-md sm:p-8 transition-all hover:-translate-y-1 hover:border-primary/50 hover:shadow-[0_20px_40px_-20px_color-mix(in_oklab,var(--color-primary)_35%,transparent)]">
             <div className="flex items-start justify-between gap-4">
               <span className="inline-flex w-fit items-center gap-2 rounded-full bg-tint px-3 py-1 text-xs font-semibold text-primary">
                 Produto Human In
@@ -563,7 +571,7 @@ function Products() {
               href={PLANPAZ_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
+              className="mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
             >
               Visitar o site do Planpaz
               <ArrowUpRight className="size-4" />
@@ -588,8 +596,8 @@ function Products() {
 
 function CtaBand() {
   return (
-    <section className="px-5 sm:px-8">
-      <div className="mx-auto w-full max-w-6xl overflow-hidden rounded-4xl bg-ink px-6 py-14 text-center sm:px-12 md:py-20">
+    <section className="px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl overflow-hidden rounded-4xl bg-ink px-6 py-14 text-center sm:px-12 md:py-20">
         <h2 className="mx-auto max-w-2xl text-3xl font-extrabold tracking-tight text-primary-foreground sm:text-4xl">
           Vamos construir um futuro mais humano
           <span className="text-primary">.</span>
@@ -599,7 +607,7 @@ function CtaBand() {
         </p>
         <a
           href="#contato"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
+          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03] active:scale-95"
         >
           Entrar em contato
           <ArrowRight className="size-4" />
@@ -614,13 +622,13 @@ function CtaBand() {
 function Contact() {
   return (
     <section id="contato" className="scroll-mt-20">
-      <div className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-24">
+      <div className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-8 md:py-24">
         <div className="grid gap-10 md:grid-cols-2 md:gap-16">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary">
               Contato
             </p>
-            <h2 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-4xl">
+            <h2 className="mt-4 text-3xl font-bold tracking-tight text-foreground md:text-5xl">
               Fale com a gente<span className="text-primary">.</span>
             </h2>
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted-foreground">
@@ -678,7 +686,7 @@ function Contact() {
               </label>
               <button
                 type="submit"
-                className="mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
+                className="mt-1 inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.02] active:scale-95"
               >
                 Enviar mensagem
                 <ArrowRight className="size-4" />
@@ -696,7 +704,7 @@ function Contact() {
 function SiteFooter() {
   return (
     <footer className="border-t border-border/70">
-      <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-6 px-5 py-10 sm:px-8 md:flex-row">
+      <div className="mx-auto flex w-full max-w-7xl flex-col items-center justify-between gap-6 px-5 py-10 sm:px-8 md:flex-row">
         <div className="flex items-center gap-3">
           <HiLogo className="size-8" />
           <span className="font-extrabold tracking-tight">Human In</span>
