@@ -10,33 +10,43 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as PlanpazRouteImport } from './routes/planpaz'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PlanpazRoute = PlanpazRouteImport.update({
+  id: '/planpaz',
+  path: '/planpaz',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/planpaz': typeof PlanpazRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/planpaz': typeof PlanpazRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/planpaz': typeof PlanpazRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/planpaz'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/planpaz'
+  id: '__root__' | '/' | '/planpaz'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PlanpazRoute: typeof PlanpazRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +58,19 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/planpaz': {
+      id: '/planpaz'
+      path: '/planpaz'
+      fullPath: '/planpaz'
+      preLoaderRoute: typeof PlanpazRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PlanpazRoute: PlanpazRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

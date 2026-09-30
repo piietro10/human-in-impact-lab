@@ -15,3 +15,4 @@
 - The Human In logo uses the official cropped bitmap in `src/assets/hi-logo.png`, rendered through `src/components/hi-logo.tsx`. Do not replace it with a redrawn or generated approximation.
 - Headlines end with a blue dot (`text-primary` "`.`" or the `headline-dot` utility) — recurring motif from the logo's blue dot on the "i".
 - Contact form uses a `mailto:` submit with placeholder `contato@humanin.com.br` until the user provides the real address.
+- PlanPaz is a dedicated `/planpaz` product route with a green/dark visual layer over the shared Human In design language; home product links must navigate internally to it.

@@ -64,21 +64,26 @@
   --color-leaf: var(--leaf);
   --color-leaf-soft: var(--leaf-soft);
   --color-glass: var(--glass);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-leaf-deep: var(--leaf-deep);
+  --color-leaf-muted: var(--leaf-muted);
 }
 
 :root {
   --radius: 0.875rem;
-  --background: oklch(0.12 0.004 260); /* near-black */
+  --background: oklch(0.145 0.018 255); /* blue-black, never pure black */
   --foreground: oklch(0.97 0 0);
-  --card: oklch(0.16 0.005 260);
+  --card: oklch(0.19 0.018 255);
   --card-foreground: oklch(0.97 0 0);
-  --popover: oklch(0.16 0.005 260);
+  --popover: oklch(0.19 0.018 255);
   --popover-foreground: oklch(0.97 0 0);
   --primary: oklch(0.6 0.198 255); /* #2F80FF */
   --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.19 0.006 260);
+  --secondary: oklch(0.215 0.018 255);
   --secondary-foreground: oklch(0.97 0 0);
-  --muted: oklch(0.2 0.006 260);
+  --muted: oklch(0.225 0.016 255);
   --muted-foreground: oklch(0.68 0.01 260);
   --accent: oklch(0.24 0.05 255);
   --accent-foreground: oklch(0.97 0 0);
@@ -107,8 +112,13 @@
   --tint: oklch(0.6 0.198 255 / 12%);
   --leaf: oklch(0.72 0.17 150); /* Planpaz green */
   --leaf-soft: oklch(0.72 0.17 150 / 14%);
-  --glass: oklch(0.14 0.005 260 / 55%);
-  --grid-line: oklch(1 0 0 / 4.5%);
+  --glass: oklch(0.17 0.018 255 / 76%);
+  --grid-line: oklch(0.65 0.08 255 / 7%);
+  --surface-1: oklch(0.155 0.02 255);
+  --surface-2: oklch(0.175 0.018 265);
+  --surface-3: oklch(0.165 0.012 235);
+  --leaf-deep: oklch(0.155 0.026 155);
+  --leaf-muted: oklch(0.28 0.06 150);
 }
 
 .dark {
@@ -160,7 +170,10 @@
   }
 
   body {
-    background-color: var(--color-background);
+    background:
+      radial-gradient(circle at 12% 8%, color-mix(in oklab, var(--color-primary) 10%, transparent) 0, transparent 25rem),
+      linear-gradient(145deg, var(--color-surface-1), var(--color-background) 52%, var(--color-surface-3));
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
   }
@@ -169,6 +182,55 @@
     background-color: var(--color-primary);
     color: var(--color-primary-foreground);
   }
+}
+
+@utility tech-grid {
+  background-image:
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+@utility section-blueprint {
+  background:
+    radial-gradient(circle at 88% 18%, color-mix(in oklab, var(--color-primary) 8%, transparent), transparent 24rem),
+    linear-gradient(135deg, color-mix(in oklab, var(--color-surface-2) 88%, transparent), color-mix(in oklab, var(--color-background) 96%, transparent));
+}
+
+@utility section-graphite {
+  background:
+    radial-gradient(circle at 8% 82%, color-mix(in oklab, var(--color-primary) 5%, transparent), transparent 21rem),
+    linear-gradient(160deg, var(--color-surface-3), var(--color-background));
+}
+
+@utility planpaz-atmosphere {
+  background:
+    radial-gradient(circle at 72% 12%, color-mix(in oklab, var(--color-leaf) 15%, transparent), transparent 30rem),
+    radial-gradient(circle at 10% 62%, color-mix(in oklab, var(--color-leaf) 6%, transparent), transparent 25rem),
+    linear-gradient(145deg, var(--color-leaf-deep), var(--color-background) 52%, var(--color-surface-3));
+}
+
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@utility animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+@utility animate-reveal-up {
+  animation: reveal-up 0.7s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-gentle-float, .animate-reveal-up { animation: none; }
 }
 
 @utility headline-dot {

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import {
   ArrowRight,
@@ -39,8 +39,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const PLANPAZ_URL = "https://planpaz.com.br";
 
 const NAV_LINKS = [
   { label: "Concepção", href: "#concepcao" },
@@ -127,9 +125,7 @@ function SiteHeader() {
             ))}
           </nav>
           <Button asChild className="hidden rounded-full px-4 sm:inline-flex">
-            <a href={PLANPAZ_URL} target="_blank" rel="noreferrer">
-              Conheça o PlanPaz <ArrowUpRight />
-            </a>
+            <Link to="/planpaz">Conheça o PlanPaz <ArrowUpRight /></Link>
           </Button>
           <Button
             type="button"
@@ -153,9 +149,7 @@ function SiteHeader() {
             </a>
           ))}
           <Button asChild className="mt-2 w-full rounded-full">
-            <a href={PLANPAZ_URL} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>
-              Conheça o PlanPaz <ArrowUpRight />
-            </a>
+            <Link to="/planpaz" onClick={() => setOpen(false)}>Conheça o PlanPaz <ArrowUpRight /></Link>
           </Button>
         </nav>
       ) : null}
@@ -165,7 +159,9 @@ function SiteHeader() {
 
 function Hero() {
   return (
-    <section id="inicio" className="relative flex min-h-[92svh] items-center border-b border-border px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32">
+    <section id="inicio" className="tech-grid relative flex min-h-[92svh] items-center overflow-hidden border-b border-border px-5 pb-16 pt-28 sm:px-8 sm:pb-20 sm:pt-32">
+      <div className="pointer-events-none absolute inset-y-0 right-[12%] hidden w-px bg-gradient-to-b from-transparent via-primary/20 to-transparent lg:block" />
+      <div className="pointer-events-none absolute right-[12%] top-[31%] hidden size-2 rounded-full bg-primary/50 lg:block" />
       <div className="mx-auto w-full max-w-6xl text-center">
         <p className="mx-auto inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-card/60 px-4 py-2 text-xs text-muted-foreground">
           <span className="size-1.5 shrink-0 rounded-full bg-primary" />
@@ -200,7 +196,7 @@ function Hero() {
 
 function Concept() {
   return (
-    <section id="concepcao" className="scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
+    <section id="concepcao" className="section-blueprint scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
@@ -249,7 +245,7 @@ function Concept() {
 
 function Products() {
   return (
-    <section id="produtos" className="scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
+    <section id="produtos" className="section-graphite scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionLabel index="02">Nossos produtos</SectionLabel>
         <div className="mt-8 grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
@@ -263,7 +259,7 @@ function Products() {
               Uma aplicação criada para transformar pequenas atitudes individuais em participação coletiva e impacto socioambiental positivo.
             </p>
             <Button asChild size="lg" className="mt-8 rounded-full">
-              <a href={PLANPAZ_URL} target="_blank" rel="noreferrer">Conheça o PlanPaz <ArrowUpRight /></a>
+              <Link to="/planpaz">Conheça o PlanPaz <ArrowUpRight /></Link>
             </Button>
           </div>
         </div>
@@ -276,7 +272,7 @@ function Team() {
   const [activeMember, setActiveMember] = useState<number | null>(null);
 
   return (
-    <section id="equipe" className="scroll-mt-24 border-b border-border py-20 md:py-28">
+    <section id="equipe" className="section-blueprint scroll-mt-24 border-b border-border py-20 md:py-28">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionLabel index="03">Equipe</SectionLabel>
         <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
@@ -323,7 +319,7 @@ function Contact() {
   const fieldClass = "rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/25";
 
   return (
-    <section id="contato" className="scroll-mt-24 px-5 py-20 sm:px-8 md:py-28">
+    <section id="contato" className="section-graphite scroll-mt-24 px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:gap-16">
         <div>
           <SectionLabel index="04">Contato</SectionLabel>
