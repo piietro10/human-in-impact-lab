@@ -4,7 +4,6 @@ import {
   ArrowDown,
   ArrowLeft,
   ArrowRight,
-  Bell,
   BookOpen,
   Camera,
   Check,
@@ -14,7 +13,6 @@ import {
   Leaf,
   Menu,
   MessageCircle,
-  Search,
   Sparkles,
   Sprout,
   Users,
@@ -23,6 +21,11 @@ import {
 } from "lucide-react";
 
 import planpazLogo from "@/assets/planpaz-logo.png";
+import bibliotecaAsset from "@/assets/planpaz-biblioteca.png.asset.json";
+import comunidadeAsset from "@/assets/planpaz-comunidade.png.asset.json";
+import inicioAsset from "@/assets/planpaz-inicio.png.asset.json";
+import jardimAsset from "@/assets/planpaz-jardim.png.asset.json";
+import welcomeAsset from "@/assets/planpaz-welcome.png.asset.json";
 import { HiLogo } from "@/components/hi-logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -60,6 +63,13 @@ const FEATURES: { icon: LucideIcon; title: string; detail: string }[] = [
   { icon: Flower2, title: "Jardim pessoal", detail: "Organize todas as suas plantas em um só lugar." },
   { icon: Users, title: "Comunidade", detail: "Encontre pessoas que também cultivam mudanças." },
   { icon: MessageCircle, title: "Compartilhamento", detail: "Troque experiências, aprendizados e conquistas." },
+];
+
+const SCREENS = [
+  { src: inicioAsset.url, alt: "Tela inicial do PlanPaz com clima e próximos lembretes", label: "Início" },
+  { src: bibliotecaAsset.url, alt: "Biblioteca de espécies do PlanPaz", label: "Biblioteca de espécies" },
+  { src: jardimAsset.url, alt: "Galeria do Meu Jardim no PlanPaz", label: "Meu jardim" },
+  { src: comunidadeAsset.url, alt: "Feed da comunidade do PlanPaz", label: "Comunidade" },
 ];
 
 function SectionEyebrow({ index, children }: { index: string; children: ReactNode }) {
@@ -129,39 +139,12 @@ function PlanPazHeader() {
   );
 }
 
-function PhoneFrame({ variant = "home", className }: { variant?: "home" | "identify" | "garden" | "community"; className?: string }) {
+function PhoneScreenshot({ src, alt, className }: { src: string; alt: string; className?: string }) {
   return (
-    <div className={cn("relative mx-auto aspect-[9/19] w-full max-w-64 rounded-[2.4rem] border-[7px] border-foreground/85 bg-leaf-deep p-2 shadow-2xl", className)}>
-      <div className="absolute left-1/2 top-2 z-10 h-4 w-20 -translate-x-1/2 rounded-full bg-foreground/85" />
-      <div className="h-full overflow-hidden rounded-[1.75rem] bg-card px-3 pb-4 pt-8">
-        <div className="flex items-center justify-between text-[9px] text-muted-foreground"><span>PlanPaz</span><Leaf className="size-3 text-leaf" /></div>
-        {variant === "home" ? <HomeScreen /> : null}
-        {variant === "identify" ? <IdentifyScreen /> : null}
-        {variant === "garden" ? <GardenScreen /> : null}
-        {variant === "community" ? <CommunityScreen /> : null}
-      </div>
+    <div className={cn("relative mx-auto w-full overflow-hidden rounded-[2.2rem] border-[7px] border-foreground/85 bg-leaf-deep shadow-2xl", className)}>
+      <img src={src} alt={alt} loading="lazy" className="block w-full" />
     </div>
   );
-}
-
-function HomeScreen() {
-  return <><p className="mt-6 text-lg font-semibold leading-tight">Bom dia,<br />vamos cultivar?</p><div className="mt-4 flex aspect-square items-center justify-center rounded-2xl bg-leaf-soft"><Sprout className="size-20 text-leaf" strokeWidth={1.2} /></div><div className="mt-4 grid grid-cols-2 gap-2"><MiniTile icon={Camera} label="Identificar" /><MiniTile icon={Flower2} label="Meu jardim" /></div></>;
-}
-
-function IdentifyScreen() {
-  return <><p className="mt-6 text-base font-semibold">Identificar planta</p><div className="mt-3 flex aspect-[4/5] flex-col items-center justify-center rounded-2xl border border-dashed border-leaf/40 bg-leaf-soft"><Camera className="size-14 text-leaf" /><span className="mt-3 text-[9px] text-muted-foreground">Enquadre a planta</span></div><div className="mx-auto mt-4 h-8 w-8 rounded-full border-4 border-leaf bg-foreground/10" /></>;
-}
-
-function GardenScreen() {
-  return <><div className="mt-6 flex items-center justify-between"><p className="text-base font-semibold">Meu jardim</p><Search className="size-4 text-muted-foreground" /></div><div className="mt-4 space-y-2">{["Costela-de-adão", "Jiboia", "Manjericão"].map((plant, index) => <div key={plant} className="grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 rounded-xl bg-leaf-soft p-2"><span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-leaf/15"><Leaf className="size-4 text-leaf" /></span><span className="truncate text-[9px]">{plant}</span><span className="text-[8px] text-muted-foreground">0{index + 1}</span></div>)}</div><div className="mt-4 rounded-xl border border-leaf/20 p-3 text-[9px] text-muted-foreground">Próxima rega · amanhã</div></>;
-}
-
-function CommunityScreen() {
-  return <><p className="mt-6 text-base font-semibold">Comunidade</p><div className="mt-4 space-y-3">{[1, 2].map((item) => <div key={item} className="rounded-xl border border-border bg-background/40 p-3"><div className="flex items-center gap-2"><span className="size-6 rounded-full bg-leaf/25" /><span className="text-[9px]">Pessoa que cultiva</span></div><div className="mt-3 aspect-video rounded-lg bg-leaf-soft" /><div className="mt-2 flex gap-3 text-muted-foreground"><Heart className="size-3" /><MessageCircle className="size-3" /></div></div>)}</div></>;
-}
-
-function MiniTile({ icon: Icon, label }: { icon: LucideIcon; label: string }) {
-  return <div className="rounded-xl border border-leaf/20 p-2"><Icon className="size-4 text-leaf" /><p className="mt-2 text-[8px]">{label}</p></div>;
 }
 
 function PlanPazHero() {
@@ -181,7 +164,7 @@ function PlanPazHero() {
         </div>
         <div className="relative mx-auto w-full max-w-sm animate-gentle-float lg:max-w-md">
           <div className="absolute inset-x-8 bottom-2 h-24 rounded-full bg-leaf/15 blur-3xl" />
-          <PhoneFrame className="relative max-w-[16rem] rotate-3 sm:max-w-[18rem]" />
+          <PhoneScreenshot src={welcomeAsset.url} alt="Tela de boas-vindas do PlanPaz" className="relative max-w-[16rem] rotate-3 sm:max-w-[18rem]" />
           <div className="absolute -left-2 top-1/3 rounded-lg border border-leaf/25 bg-glass px-3 py-2 text-xs backdrop-blur sm:left-0"><span className="text-leaf">●</span> Próxima rega amanhã</div>
           <div className="absolute -right-1 bottom-1/4 rounded-lg border border-leaf/25 bg-glass px-3 py-2 text-xs backdrop-blur sm:right-0"><Check className="mr-1 inline size-3 text-leaf" /> Planta identificada</div>
         </div>
@@ -195,7 +178,13 @@ function About() {
     <section id="sobre" className="section-graphite scroll-mt-24 border-b border-leaf/15 px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] lg:gap-20">
         <div><SectionEyebrow index="01">O que é</SectionEyebrow><h2 className="mt-6 text-4xl font-semibold leading-tight sm:text-5xl">Natureza e tecnologia no mesmo ritmo<span className="text-leaf">.</span></h2></div>
-        <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg"><p>O PlanPaz aproxima pessoas do cuidado com as plantas por meio de uma experiência simples, acolhedora e útil.</p><p>Identificação, orientações e rotina de cuidados se encontram em um jardim digital que cresce junto com cada pessoa.</p><div className="grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-leaf/15 bg-leaf/15 pt-px"><Metric value="01" label="Jardim" /><Metric value="08" label="Recursos" /><Metric value="∞" label="Descobertas" /></div></div>
+        <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+          <p className="text-xs font-medium uppercase tracking-wide text-leaf">Objetivo geral</p>
+          <p>O objetivo principal é incentivar o hábito do cultivo de plantas caseiras, visto os inúmeros benefícios desta prática — oferecendo funcionalidades simples, mas efetivas, para ajudar qualquer pessoa que já possua esse hábito, ou queira desenvolver.</p>
+          <p>Além de criar uma comunidade de cultivadores da paz, queremos provar, por meio de pesquisas acadêmicas, que essas práticas também podem melhorar o meio ambiente, a saúde mental e física dos usuários.</p>
+          <p>O principal foco é a <span className="text-foreground">preservação do meio ambiente</span>, estimulando atividades sustentáveis no dia a dia, nas principais áreas em que o aplicativo está sendo utilizado — principalmente nas áreas urbanas.</p>
+          <div className="grid grid-cols-3 gap-px overflow-hidden rounded-lg border border-leaf/15 bg-leaf/15 pt-px"><Metric value="01" label="Jardim" /><Metric value="08" label="Recursos" /><Metric value="∞" label="Descobertas" /></div>
+        </div>
       </div>
     </section>
   );
@@ -213,11 +202,11 @@ function Features() {
 }
 
 function Screens() {
-  return <section id="telas" className="tech-grid scroll-mt-24 overflow-hidden border-b border-leaf/15 px-5 py-20 sm:px-8 md:py-28"><div className="mx-auto max-w-6xl text-center"><SectionEyebrow index="04">Telas do aplicativo</SectionEyebrow><h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold sm:text-5xl">Uma experiência que cresce com você<span className="text-leaf">.</span></h2><p className="mx-auto mt-5 max-w-2xl leading-relaxed text-muted-foreground">Clareza para descobrir, organizar e compartilhar o cuidado, em cada etapa.</p><div className="mt-16 grid grid-cols-2 items-end gap-3 sm:gap-8 lg:grid-cols-4"><PhoneFrame variant="identify" className="-rotate-3 transition-transform duration-500 hover:-translate-y-2 hover:rotate-0" /><PhoneFrame variant="home" className="translate-y-5 rotate-2 transition-transform duration-500 hover:translate-y-2 hover:rotate-0 sm:translate-y-10" /><PhoneFrame variant="garden" className="-rotate-2 transition-transform duration-500 hover:-translate-y-2 hover:rotate-0" /><PhoneFrame variant="community" className="translate-y-5 rotate-3 transition-transform duration-500 hover:translate-y-2 hover:rotate-0 sm:translate-y-10" /></div></div></section>;
+  return <section id="telas" className="tech-grid scroll-mt-24 overflow-hidden border-b border-leaf/15 px-5 py-20 sm:px-8 md:py-28"><div className="mx-auto max-w-6xl text-center"><SectionEyebrow index="04">Telas do aplicativo</SectionEyebrow><h2 className="mx-auto mt-6 max-w-3xl text-4xl font-semibold sm:text-5xl">Uma experiência que cresce com você<span className="text-leaf">.</span></h2><p className="mx-auto mt-5 max-w-2xl leading-relaxed text-muted-foreground">Clareza para descobrir, organizar e compartilhar o cuidado, em cada etapa.</p><div className="mt-16 grid grid-cols-2 items-start gap-3 sm:gap-8 lg:grid-cols-4"><figure className="-rotate-2 transition-transform duration-500 hover:rotate-0"><PhoneScreenshot src={SCREENS[0].src} alt={SCREENS[0].alt} /><figcaption className="mt-3 text-center text-xs text-muted-foreground">{SCREENS[0].label}</figcaption></figure><figure className="rotate-2 transition-transform duration-500 hover:rotate-0 sm:translate-y-8"><PhoneScreenshot src={SCREENS[1].src} alt={SCREENS[1].alt} /><figcaption className="mt-3 text-center text-xs text-muted-foreground">{SCREENS[1].label}</figcaption></figure><figure className="-rotate-2 transition-transform duration-500 hover:rotate-0"><PhoneScreenshot src={SCREENS[2].src} alt={SCREENS[2].alt} /><figcaption className="mt-3 text-center text-xs text-muted-foreground">{SCREENS[2].label}</figcaption></figure><figure className="rotate-2 transition-transform duration-500 hover:rotate-0 sm:translate-y-8"><PhoneScreenshot src={SCREENS[3].src} alt={SCREENS[3].alt} /><figcaption className="mt-3 text-center text-xs text-muted-foreground">{SCREENS[3].label}</figcaption></figure></div></div></section>;
 }
 
 function Community() {
-  return <section id="comunidade" className="section-graphite border-b border-leaf/15 px-5 py-20 sm:px-8 md:py-28"><div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20"><div className="relative mx-auto grid aspect-square w-full max-w-md place-items-center"><div className="absolute inset-[12%] rounded-full border border-leaf/15" /><div className="absolute inset-[27%] rounded-full border border-leaf/25" />{["left-3 top-1/3", "right-3 top-1/4", "bottom-3 left-1/3", "bottom-1/4 right-1/4"].map((position, index) => <span key={position} className={cn("absolute grid size-12 place-items-center rounded-full border border-leaf/25 bg-card text-xs text-leaf shadow-lg", position)}>0{index + 1}</span>)}<Users className="size-20 text-leaf" strokeWidth={1} /></div><div><SectionEyebrow index="05">Comunidade</SectionEyebrow><h2 className="mt-6 text-4xl font-semibold sm:text-5xl">Cultivar também é compartilhar<span className="text-leaf">.</span></h2><p className="mt-6 text-lg leading-relaxed text-muted-foreground">A comunidade PlanPaz conecta experiências reais: dúvidas, descobertas e pequenas conquistas que inspiram outras pessoas a cuidar.</p><div className="mt-8 flex items-center gap-4 border-l-2 border-leaf pl-5"><Heart className="size-6 shrink-0 text-leaf" /><p className="text-sm text-muted-foreground">Cada cuidado individual fortalece uma mudança coletiva.</p></div></div></div></section>;
+  return <section id="comunidade" className="section-graphite border-b border-leaf/15 px-5 py-20 sm:px-8 md:py-28"><div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20"><div className="relative mx-auto grid aspect-square w-full max-w-md place-items-center"><div className="absolute inset-[12%] rounded-full border border-leaf/15" /><div className="absolute inset-[27%] rounded-full border border-leaf/25" />{["left-3 top-1/3", "right-3 top-1/4", "bottom-3 left-1/3", "bottom-1/4 right-1/4"].map((position, index) => <span key={position} className={cn("absolute grid size-12 place-items-center rounded-full border border-leaf/25 bg-card text-xs text-leaf shadow-lg", position)}>0{index + 1}</span>)}<Users className="size-20 text-leaf" strokeWidth={1} /></div><div><SectionEyebrow index="05">Comunidade</SectionEyebrow><h2 className="mt-6 text-4xl font-semibold sm:text-5xl">Cultivar também é compartilhar<span className="text-leaf">.</span></h2><p className="mt-6 text-lg leading-relaxed text-muted-foreground">A comunidade PlanPaz conecta experiências reais: dúvidas, descobertas e pequenas conquistas que inspiram outras pessoas a cuidar.</p><div className="mt-8 flex items-center gap-4 border-l-2 border-leaf pl-5"><Heart className="size-6 shrink-0 text-leaf" /><p className="text-sm text-muted-foreground">Cada cuidado individual fortalece uma mudança coletiva.</p></div><blockquote className="mt-10 border-l-2 border-leaf/40 pl-5 sm:pl-6"><p className="text-lg leading-relaxed sm:text-xl">“Nenhum de nós, incluindo eu, jamais faz grandes coisas. Mas todos podemos fazer pequenas coisas, com grande amor, e juntos podemos fazer algo maravilhoso”<span className="text-leaf">.</span></p><footer className="mt-3 text-xs uppercase text-muted-foreground">Madre Teresa de Calcutá</footer></blockquote></div></div></section>;
 }
 
 function FinalCta() {
