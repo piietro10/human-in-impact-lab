@@ -16,6 +16,7 @@ import {
 
 import planpazLogo from "@/assets/planpaz-logo.png";
 import { HiLogo } from "@/components/hi-logo";
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -167,18 +168,22 @@ function Hero() {
           <span className="size-1.5 shrink-0 rounded-full bg-primary" />
           <span>Tecnologia de impacto social · IFSP São Miguel Paulista</span>
         </p>
-        <h1 className="mx-auto mt-8 max-w-5xl text-5xl font-semibold leading-[1.04] sm:text-7xl lg:text-8xl">
+        <div className="animate-reveal-up mx-auto mt-8 flex w-fit items-center gap-3 sm:gap-4">
+          <HiLogo className="size-12 rounded-xl sm:size-16" />
+          <span className="text-4xl font-bold sm:text-6xl">Human In<Dot /></span>
+        </div>
+        <h1 className="animate-reveal-up mx-auto mt-8 max-w-4xl text-4xl font-semibold leading-[1.06] [animation-delay:120ms] sm:text-6xl lg:text-7xl">
           Tecnologia que serve<br className="hidden sm:block" /> <span className="text-muted-foreground">às pessoas</span><Dot />
         </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+        <p className="animate-reveal-up mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted-foreground [animation-delay:220ms] sm:text-lg">
           Desenvolvemos aplicações para causar impacto social e colaborar no combate a problemas socioambientais por meio da mudança individual.
         </p>
-        <div className="mt-9 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center">
+        <div className="animate-reveal-up mt-9 flex flex-col items-stretch [animation-delay:320ms] justify-center gap-3 sm:flex-row sm:items-center">
           <Button asChild size="lg" className="rounded-full">
-            <a href="#produtos">Ver nossos produtos <ArrowRight /></a>
+            <Link to="/planpaz">Conheça o PlanPaz <ArrowRight /></Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-full">
-            <a href="#concepcao">Nossa concepção</a>
+            <a href="#concepcao">Quem somos</a>
           </Button>
         </div>
         <div className="mx-auto mt-16 grid max-w-3xl grid-cols-3 divide-x divide-border overflow-hidden rounded-lg border border-border bg-card/40 sm:mt-20">
@@ -206,10 +211,18 @@ function Concept() {
               Humanização e inovação estão no nome e orientam tudo o que criamos.
             </p>
           </div>
-          <div className="space-y-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-            <p>A Human In é formada por cinco estudantes do IFSP campus São Miguel Paulista, do curso de Informática para Internet, ingressantes em 2023.</p>
-            <p>Analisamos problemas reais e aplicamos inovação tecnológica para auxiliar pessoas, formando redes em prol de causas comuns através da participação individual.</p>
-            <p>Falamos com pessoas dispostas a <span className="text-foreground">mudar a si mesmas para mudar o mundo</span>.</p>
+          <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2">
+            {[
+              ["Quem somos", "Cinco estudantes do IFSP São Miguel Paulista, curso de Informática para Internet (turma 2023)."],
+              ["O que fazemos", "Aplicações de impacto social contra problemas socioambientais."],
+              ["O problema", "Tecnologia que explora a atenção em vez de resolver problemas reais."],
+              ["Como usamos tecnologia", "Como ferramenta para formar redes em prol de causas comuns, pela participação individual."],
+            ].map(([t, d], i) => (
+              <Reveal key={t} delay={i * 80} as="article" className="bg-background p-6 transition-colors hover:bg-card">
+                <p className="text-xs uppercase text-primary">{t}</p>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">{d}</p>
+              </Reveal>
+            ))}
           </div>
         </div>
 
@@ -226,8 +239,8 @@ function Concept() {
 
         <div className="mt-10 grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-5">
           {VALUES.map((value) => (
-            <article key={value.name} className="bg-background p-6 transition-colors hover:bg-card">
-              <value.icon className="size-5 text-primary" />
+            <article key={value.name} className="group bg-background p-6 transition-colors hover:bg-card">
+              <span className="grid size-10 place-items-center rounded-full bg-accent text-primary transition-transform duration-300 group-hover:-translate-y-1 group-hover:scale-110"><value.icon className="size-5" /></span>
               <h3 className="mt-5 font-medium">{value.name}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{value.text}</p>
             </article>
@@ -248,17 +261,25 @@ function Products() {
     <section id="produtos" className="section-graphite scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionLabel index="02">Nossos produtos</SectionLabel>
+        <Reveal className="mt-8 flex flex-wrap items-center gap-2 text-xs uppercase text-muted-foreground sm:gap-3">
+          <span className="flex items-center gap-2 rounded-full border border-border px-3 py-1.5"><HiLogo className="size-4 rounded" /> Human In</span>
+          <ArrowRight className="size-3.5 text-primary" />
+          <span className="rounded-full border border-border px-3 py-1.5">Projeto</span>
+          <ArrowRight className="size-3.5 text-leaf" />
+          <span className="flex items-center gap-2 rounded-full border border-leaf/40 bg-leaf-soft px-3 py-1.5 text-leaf"><img src={planpazLogo} alt="" className="size-4 object-contain" /> PlanPaz</span>
+        </Reveal>
         <div className="mt-8 grid items-center gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
-          <div className="flex min-h-72 items-center justify-center rounded-lg border border-leaf/30 bg-leaf-soft p-10 sm:min-h-96">
-            <img src={planpazLogo} alt="Logomarca PlanPaz" width={490} height={676} className="max-h-72 w-auto max-w-full object-contain sm:max-h-80" />
+          <div className="group flex min-h-60 items-center justify-center rounded-lg border border-leaf/30 bg-leaf-soft p-8 transition-colors hover:border-leaf/60 sm:min-h-96 sm:p-10">
+            <img src={planpazLogo} alt="Logomarca PlanPaz" width={490} height={676} className="max-h-52 w-auto max-w-full object-contain transition-transform duration-500 group-hover:scale-105 sm:max-h-80" />
           </div>
           <div>
             <p className="text-xs uppercase text-leaf">Produto principal</p>
             <h2 className="mt-4 text-5xl font-semibold sm:text-7xl">PlanPaz<span className="text-leaf">.</span></h2>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Uma aplicação criada para transformar pequenas atitudes individuais em participação coletiva e impacto socioambiental positivo.
+              Nosso principal projeto: um aplicativo que incentiva o cultivo de plantas caseiras, transformando pequenas atitudes individuais em impacto socioambiental positivo.
             </p>
-            <Button asChild size="lg" className="mt-8 rounded-full">
+            <p className="mt-4 text-sm text-muted-foreground">Desenvolvido pela Human In.</p>
+            <Button asChild size="lg" className="mt-8 w-full rounded-full transition-transform hover:-translate-y-0.5 sm:w-auto">
               <Link to="/planpaz">Conheça o PlanPaz <ArrowUpRight /></Link>
             </Button>
           </div>
@@ -272,7 +293,7 @@ function Team() {
   const [activeMember, setActiveMember] = useState<number | null>(null);
 
   return (
-    <section id="equipe" className="section-blueprint scroll-mt-24 border-b border-border py-20 md:py-28">
+    <section id="equipe" className="section-blueprint scroll-mt-24 border-b border-border py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionLabel index="03">Equipe</SectionLabel>
         <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
@@ -282,7 +303,7 @@ function Team() {
       </div>
 
       <div className="mt-10 overflow-x-auto px-5 pb-4 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div className="mx-auto flex w-max max-w-none snap-x snap-mandatory gap-4 lg:w-full lg:max-w-6xl">
+        <div className="mx-auto flex w-max max-w-none snap-x snap-mandatory gap-3 sm:gap-4 lg:w-full lg:max-w-6xl">
           {TEAM.map((member, index) => {
             const active = activeMember === index;
             return (
@@ -292,18 +313,19 @@ function Team() {
                 aria-label={`${member.name}, ${member.role}`}
                 aria-pressed={active}
                 onClick={() => setActiveMember(active ? null : index)}
-                className="group relative aspect-[4/5] w-[76vw] max-w-80 shrink-0 snap-center overflow-hidden rounded-lg border border-border bg-card text-left sm:w-72 lg:min-w-0 lg:flex-1"
+                className="group relative aspect-[3/4] w-[42vw] max-w-52 shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-card text-left transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 sm:w-48 lg:min-w-0 lg:flex-1"
               >
                 <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/35 transition-colors group-hover:text-primary/60 group-focus-visible:text-primary/60">
-                  <UserRound className="size-20" strokeWidth={1} />
+                  <UserRound className="size-14" strokeWidth={1} />
                 </div>
                 <span className="absolute left-5 top-5 text-xs text-muted-foreground">0{index + 1}</span>
                 <div className={cn(
-                  "absolute inset-x-0 bottom-0 translate-y-full border-t border-border bg-background/90 p-5 backdrop-blur transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0",
+                  "absolute inset-x-0 bottom-0 translate-y-full border-t border-border bg-background/90 p-3.5 sm:p-4 backdrop-blur transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0",
                   active && "translate-y-0",
                 )}>
                   <p className="font-medium">{member.name}</p>
-                  <p className="mt-1 text-xs uppercase text-muted-foreground">{member.role}</p>
+                  <p className="mt-1 text-[11px] uppercase text-primary">{member.role}</p>
+                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Descrição em breve.</p>
                 </div>
               </button>
             );
