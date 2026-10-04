@@ -12,7 +12,7 @@
 ## Architecture & design decisions
 
 - Brand tokens live in `src/styles.css` (`@theme inline` + `:root`): palette is locked to #000000 / #2F80FF / #FFFFFF on a dark surface, font is Inter only. Never hardcode raw colors in components — use semantic tokens (`bg-ink`, `text-primary`, `bg-tint`, …).
-- The Human In logo uses the official uploaded full lockup through `src/components/hi-logo.tsx`; preserve its symbol, name, pillars and proportions without redrawing it.
+- The Human In logo uses only the official cropped square “hi” symbol through `src/components/hi-logo.tsx`; never show the full lockup with name and pillars.
 - Headlines end with a blue dot (`text-primary` "`.`" or the `headline-dot` utility) — recurring motif from the logo's blue dot on the "i".
 - Contact form uses a `mailto:` submit with placeholder `contato@humanin.com.br` until the user provides the real address.
 - PlanPaz is a dedicated `/planpaz` product route with a green/dark visual layer over the shared Human In design language; home product links must navigate internally to it.
