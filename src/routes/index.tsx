@@ -48,11 +48,11 @@ const NAV_LINKS = [
 ];
 
 const TEAM = [
-  { name: "Integrante 1", role: "Função a definir" },
-  { name: "Integrante 2", role: "Função a definir" },
-  { name: "Integrante 3", role: "Função a definir" },
-  { name: "Integrante 4", role: "Função a definir" },
-  { name: "Integrante 5", role: "Função a definir" },
+  { name: "Andrew Gabriel", role: "Scrum Master" },
+  { name: "João Manuel", role: "Dev Backend" },
+  { name: "Leonardo Ciardi", role: "Dev Frontend" },
+  { name: "João Paulo", role: "Design" },
+  { name: "Matheus Pietro", role: "Design" },
 ];
 
 const VALUES: { icon: LucideIcon; name: string; text: string }[] = [
@@ -285,8 +285,6 @@ function Products() {
 }
 
 function Team() {
-  const [activeMember, setActiveMember] = useState<number | null>(null);
-
   return (
     <section id="equipe" className="section-blueprint scroll-mt-24 border-b border-border py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
