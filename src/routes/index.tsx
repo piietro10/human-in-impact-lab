@@ -297,35 +297,23 @@ function Team() {
 
       <div className="mt-10 overflow-x-auto px-5 pb-4 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         <div className="mx-auto flex w-max max-w-none snap-x snap-mandatory gap-3 sm:gap-4 lg:w-full lg:max-w-6xl">
-          {TEAM.map((member, index) => {
-            const active = activeMember === index;
-            return (
-              <button
-                key={member.name}
-                type="button"
-                aria-label={`${member.name}, ${member.role}`}
-                aria-pressed={active}
-                onClick={() => setActiveMember(active ? null : index)}
-                className="group relative aspect-[3/4] w-[42vw] max-w-52 shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-card text-left transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 sm:w-48 lg:min-w-0 lg:flex-1"
-              >
-                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/35 transition-colors group-hover:text-primary/60 group-focus-visible:text-primary/60">
-                  <UserRound className="size-14" strokeWidth={1} />
-                </div>
-                <span className="absolute left-5 top-5 text-xs text-muted-foreground">0{index + 1}</span>
-                <div className={cn(
-                  "absolute inset-x-0 bottom-0 translate-y-full border-t border-border bg-background/90 p-3.5 sm:p-4 backdrop-blur transition-transform duration-300 group-hover:translate-y-0 group-focus-visible:translate-y-0",
-                  active && "translate-y-0",
-                )}>
-                  <p className="font-medium">{member.name}</p>
-                  <p className="mt-1 text-[11px] uppercase text-primary">{member.role}</p>
-                  <p className="mt-2 text-xs leading-relaxed text-muted-foreground">Descrição em breve.</p>
-                </div>
-              </button>
-            );
-          })}
+          {TEAM.map((member, index) => (
+            <article
+              key={member.name}
+              className="group relative aspect-[3/4] w-[42vw] max-w-52 shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 sm:w-48 lg:min-w-0 lg:flex-1"
+            >
+              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/35 transition-colors group-hover:text-primary/60">
+                <UserRound className="size-14" strokeWidth={1} />
+              </div>
+              <span className="absolute left-4 top-4 font-mono text-xs text-muted-foreground">0{index + 1}</span>
+              <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/90 p-3 backdrop-blur sm:p-4">
+                <p className="truncate text-sm font-medium">{member.name}</p>
+                <p className="mt-1 text-[10px] uppercase text-primary">{member.role}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
-      <p className="mt-2 px-5 text-xs text-muted-foreground sm:hidden">Toque em um perfil para ver os detalhes.</p>
     </section>
   );
 }
