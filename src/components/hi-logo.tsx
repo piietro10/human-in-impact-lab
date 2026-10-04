@@ -1,4 +1,5 @@
 import hiLogoAsset from "@/assets/human-in-logo-transparent.png.asset.json";
+import { cn } from "@/lib/utils";
 
 type HiLogoProps = {
   className?: string;
@@ -12,7 +13,7 @@ export function HiLogo({ className }: HiLogoProps) {
     <img
       src={hiLogoAsset.url}
       alt="Logomarca Human In"
-      className={className}
+      className={cn("rounded-sm bg-paper object-contain px-1", className)}
       width={1269}
       height={380}
     />

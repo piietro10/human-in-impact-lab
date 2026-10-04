@@ -156,7 +156,7 @@ function PlanPazHero() {
         </div>
         <div className="relative mx-auto w-full max-w-[19rem] sm:max-w-sm">
           <div className="absolute inset-x-6 bottom-4 h-24 rounded-full bg-leaf/20 blur-3xl" />
-          <div className="animate-gentle-float"><PhoneScreenshot src={welcomeAsset.url} alt="Tela de boas-vindas do PlanPaz" className="relative max-w-[15rem] sm:max-w-[17.5rem]" /></div>
+          <div><PhoneScreenshot src={welcomeAsset.url} alt="Tela de boas-vindas do PlanPaz" className="relative max-w-[15rem] sm:max-w-[17.5rem]" /></div>
           {[
             { icon: Camera, text: "Planta identificada", pos: "-left-3 top-[14%] sm:-left-10" },
             { icon: Droplets, text: "Regar amanhã, 8h", pos: "-right-3 top-[38%] sm:-right-12" },
