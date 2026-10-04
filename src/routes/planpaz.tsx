@@ -156,7 +156,7 @@ function PlanPazHero() {
         </div>
         <div className="relative mx-auto w-full max-w-[19rem] sm:max-w-sm">
           <div className="absolute inset-x-6 bottom-4 h-24 rounded-full bg-leaf/20 blur-3xl" />
-          <div className="animate-gentle-float"><PhoneScreenshot src={welcomeAsset.url} alt="Tela de boas-vindas do PlanPaz" className="relative max-w-[15rem] sm:max-w-[17.5rem]" /></div>
+          <div><PhoneScreenshot src={welcomeAsset.url} alt="Tela de boas-vindas do PlanPaz" className="relative max-w-[15rem] sm:max-w-[17.5rem]" /></div>
           {[
             { icon: Camera, text: "Planta identificada", pos: "-left-3 top-[14%] sm:-left-10" },
             { icon: Droplets, text: "Regar amanhã, 8h", pos: "-right-3 top-[38%] sm:-right-12" },
@@ -261,7 +261,7 @@ function Screens() {
     <section id="por-dentro" className="tech-grid scroll-mt-24 overflow-hidden border-b border-leaf/15 px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <Reveal className="text-center"><SectionEyebrow index="04">Por dentro</SectionEyebrow><h2 className="mx-auto mt-6 max-w-3xl text-3xl font-semibold sm:text-5xl">Conheça o PlanPaz por dentro<span className="text-leaf">.</span></h2><p className="mx-auto mt-5 max-w-xl leading-relaxed text-muted-foreground">Uma pequena jornada pelas telas do aplicativo.</p></Reveal>
-        <div className="-mx-5 mt-14 flex snap-x snap-mandatory gap-6 overflow-x-auto px-5 pb-4 [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-10 sm:overflow-visible sm:px-0 lg:grid-cols-4 lg:gap-6 [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-5 mt-14 flex snap-x snap-proximity gap-6 overflow-x-auto px-5 pb-4 [overscroll-behavior-inline:contain] [scrollbar-width:none] sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-10 sm:overflow-visible sm:px-0 lg:grid-cols-4 lg:gap-6 [&::-webkit-scrollbar]:hidden">
           {JOURNEY.map((s, i) => (
             <Reveal key={s.label} as="figure" delay={i * 120} className={cn("w-[68vw] max-w-[17rem] shrink-0 snap-center sm:w-auto sm:max-w-none", i % 2 === 1 && "lg:translate-y-10")}>
               <PhoneScreenshot src={s.src} alt={s.alt} className="transition-transform duration-500 hover:-translate-y-2" />
@@ -377,5 +377,5 @@ function FinalCta() {
   );
 }
 function PlanPazFooter() {
-  return <footer className="border-t border-leaf/15 px-5 py-8 sm:px-8"><div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4"><div className="flex min-w-0 items-center gap-3"><img src={planpazLogo} alt="PlanPaz" className="size-9 shrink-0 object-contain" /><div className="min-w-0"><p className="truncate text-sm font-bold">PlanPaz</p><p className="truncate text-[10px] text-muted-foreground">Um produto Human In</p></div></div><Link to="/" className="flex shrink-0 items-center gap-2 text-xs text-muted-foreground transition-colors hover:text-foreground"><HiLogo className="size-7 rounded-md" /><span className="hidden sm:inline">Human In</span></Link></div></footer>;
+  return <footer className="border-t border-leaf/15 px-5 py-8 sm:px-8"><div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4"><div className="flex min-w-0 items-center gap-3"><img src={planpazLogo} alt="PlanPaz" className="size-9 shrink-0 object-contain" /><div className="min-w-0"><p className="truncate text-sm font-bold">PlanPaz</p><p className="truncate text-[10px] text-muted-foreground">Um produto Human In</p></div></div><Link to="/" aria-label="Voltar para Human In" className="flex shrink-0 items-center text-muted-foreground transition-colors hover:text-foreground"><HiLogo className="h-7 w-auto max-w-28 object-contain" /></Link></div></footer>;
 }
