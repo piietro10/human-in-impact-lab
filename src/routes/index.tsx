@@ -112,9 +112,8 @@ function SiteHeader() {
           scrolled ? "border-foreground/15 bg-glass" : "border-foreground/10 bg-background/70",
         )}
       >
-        <a href="#inicio" className="flex min-w-0 items-center gap-2.5" onClick={() => setOpen(false)}>
-          <HiLogo className="size-8 shrink-0 rounded-lg" />
-          <span className="truncate text-sm font-bold">Human.In</span>
+        <a href="#inicio" className="flex min-w-0 items-center" onClick={() => setOpen(false)}>
+          <HiLogo className="h-8 w-auto max-w-40 shrink-0 object-contain" />
         </a>
 
         <div className="flex shrink-0 items-center gap-2">
@@ -168,10 +167,6 @@ function Hero() {
           <span className="size-1.5 shrink-0 rounded-full bg-primary" />
           <span>Tecnologia de impacto social · IFSP São Miguel Paulista</span>
         </p>
-        <div className="animate-reveal-up mx-auto mt-8 flex w-fit items-center gap-3 sm:gap-4">
-          <HiLogo className="size-12 rounded-xl sm:size-16" />
-          <span className="text-4xl font-bold sm:text-6xl">Human In<Dot /></span>
-        </div>
         <h1 className="animate-reveal-up mx-auto mt-8 max-w-4xl text-4xl font-semibold leading-[1.06] [animation-delay:120ms] sm:text-6xl lg:text-7xl">
           Tecnologia que serve<br className="hidden sm:block" /> <span className="text-muted-foreground">às pessoas</span><Dot />
         </h1>
@@ -262,7 +257,7 @@ function Products() {
       <div className="mx-auto max-w-6xl">
         <SectionLabel index="02">Nossos produtos</SectionLabel>
         <Reveal className="mt-8 flex flex-wrap items-center gap-2 text-xs uppercase text-muted-foreground sm:gap-3">
-          <span className="flex items-center gap-2 rounded-full border border-border px-3 py-1.5"><HiLogo className="size-4 rounded" /> Human In</span>
+          <span className="flex items-center rounded-full border border-border px-3 py-1.5"><HiLogo className="h-4 w-auto max-w-20 object-contain" /></span>
           <ArrowRight className="size-3.5 text-primary" />
           <span className="rounded-full border border-border px-3 py-1.5">Projeto</span>
           <ArrowRight className="size-3.5 text-leaf" />
@@ -376,8 +371,7 @@ function SiteFooter() {
     <footer className="border-t border-border px-5 py-8 sm:px-8">
       <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4">
         <div className="flex min-w-0 items-center gap-3">
-          <HiLogo className="size-8 shrink-0 rounded-lg" />
-          <span className="truncate text-sm font-bold">Human.In</span>
+          <HiLogo className="h-8 w-auto max-w-40 shrink-0 object-contain" />
         </div>
         <p className="shrink-0 text-right text-[10px] uppercase text-muted-foreground sm:text-xs">© {new Date().getFullYear()} Human In</p>
       </div>

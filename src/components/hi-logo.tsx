@@ -1,21 +1,20 @@
-import hiLogoImg from "@/assets/hi-logo.png";
+import hiLogoAsset from "@/assets/human-in-logo-transparent.png.asset.json";
 
 type HiLogoProps = {
   className?: string;
 };
 
 /**
- * Human In brand mark — the official logo, cropped from the brand sheet
- * (black rounded square, white "hi", blue dot on the "i").
+ * Official Human In logo with symbol, name and brand pillars.
  */
 export function HiLogo({ className }: HiLogoProps) {
   return (
     <img
-      src={hiLogoImg}
+      src={hiLogoAsset.url}
       alt="Logomarca Human In"
       className={className}
-      width={512}
-      height={512}
+      width={1269}
+      height={380}
     />
   );
 }
