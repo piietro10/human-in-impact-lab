@@ -93,6 +93,33 @@ function Index() {
   );
 }
 
+function scrollToSection(event: { preventDefault: () => void }, href: string) {
+  const id = href.replace("#", "");
+  const section = document.getElementById(id);
+  if (!section) return;
+  event.preventDefault();
+
+  const headerSpace = 88;
+  const style = window.getComputedStyle(section);
+  const padTop = parseFloat(style.paddingTop) || 0;
+  const padBottom = parseFloat(style.paddingBottom) || 0;
+  const rect = section.getBoundingClientRect();
+  const contentTop = rect.top + window.scrollY + padTop;
+  const contentHeight = rect.height - padTop - padBottom;
+  const available = window.innerHeight - headerSpace;
+
+  const top =
+    id === "inicio"
+      ? 0
+      : contentHeight < available
+        ? contentTop - headerSpace - (available - contentHeight) / 2
+        : contentTop - headerSpace - 24;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  history.replaceState(null, "", href);
+}
+
 function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -102,6 +129,19 @@ function SiteHeader() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      const anchor = (event.target as HTMLElement | null)?.closest?.("a[href^='#']") as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      scrollToSection(event, href);
+      setOpen(false);
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
   }, []);
 
   return (
@@ -294,19 +334,27 @@ function Team() {
       <div className="mx-auto mt-10 max-w-6xl px-5 sm:px-8">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
           {TEAM.map((member, index) => (
-            <article
-              key={member.name}
-              className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 max-sm:last:col-span-2 max-sm:last:aspect-[7/4] sm:aspect-[3/4]"
-            >
-              <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/35 transition-colors group-hover:text-primary/60">
-                <UserRound className="size-14" strokeWidth={1} />
-              </div>
-              <span className="absolute left-4 top-4 font-mono text-xs text-muted-foreground">0{index + 1}</span>
-              <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/90 p-3 backdrop-blur sm:p-4">
-                <p className="truncate text-sm font-medium">{member.name}</p>
-                <p className="mt-1 text-[10px] uppercase text-primary">{member.role}</p>
-              </div>
-            </article>
+            <Reveal key={member.name} delay={index * 90} className="max-sm:last:col-span-2">
+              <article
+                tabIndex={0}
+                className={cn("member-card group relative aspect-square overflow-hidden rounded-lg border border-border bg-card outline-none sm:aspect-[3/4]", index === TEAM.length - 1 && "max-sm:aspect-[7/4]")}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
+                <span className="member-sheen pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+                <div className="absolute inset-0 flex items-center justify-center pb-10">
+                  <span className="relative flex items-center justify-center">
+                    <span className="member-ring absolute size-20 rounded-full border border-primary/60" />
+                    <UserRound className="member-icon size-14 text-muted-foreground/35 group-hover:text-primary group-focus-visible:text-primary" strokeWidth={1} />
+                  </span>
+                </div>
+                <span className="absolute left-4 top-4 font-mono text-xs text-muted-foreground transition-colors group-hover:text-primary">0{index + 1}</span>
+                <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/90 p-3 backdrop-blur sm:p-4">
+                  <span className="member-bar absolute inset-x-0 top-0 h-px bg-primary" />
+                  <p className="truncate text-sm font-medium">{member.name}</p>
+                  <p className="mt-1 text-[10px] uppercase text-primary">{member.role}</p>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
       </div>

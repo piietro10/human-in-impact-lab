@@ -227,9 +227,38 @@
   animation: reveal-up 0.7s ease-out both;
 }
 
+@keyframes member-pulse {
+  0% { transform: scale(0.85); opacity: 0.55; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes member-sheen {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(260%) skewX(-18deg); }
+}
+
+@utility member-card {
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.45s ease;
+  &:hover, &:focus-visible {
+    transform: translateY(-8px) scale(1.02);
+    border-color: color-mix(in oklab, var(--color-primary) 55%, transparent);
+    box-shadow: 0 18px 40px -18px color-mix(in oklab, var(--color-primary) 55%, transparent);
+  }
+  &:active { transform: translateY(-3px) scale(0.99); }
+  & .member-icon { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), color 0.3s ease; }
+  &:hover .member-icon, &:focus-visible .member-icon { transform: translateY(-10px) scale(1.12); }
+  & .member-ring { opacity: 0; }
+  &:hover .member-ring, &:focus-visible .member-ring { animation: member-pulse 1.4s ease-out infinite; }
+  & .member-sheen { transform: translateX(-120%) skewX(-18deg); }
+  &:hover .member-sheen, &:focus-visible .member-sheen { animation: member-sheen 0.9s ease-out; }
+  & .member-bar { transform: scaleX(0); transform-origin: left; transition: transform 0.45s ease; }
+  &:hover .member-bar, &:focus-visible .member-bar { transform: scaleX(1); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .animate-gentle-float, .animate-reveal-up { animation: none; }
+  .member-card, .member-card * { animation: none !important; transition: none !important; }
 }
 
 @utility headline-dot {
