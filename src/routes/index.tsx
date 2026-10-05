@@ -124,9 +124,6 @@ function SiteHeader() {
               </a>
             ))}
           </nav>
-          <Button asChild className="hidden rounded-full px-4 sm:inline-flex">
-            <Link to="/planpaz">Conheça o PlanPaz <ArrowUpRight /></Link>
-          </Button>
           <Button
             type="button"
             variant="outline"
@@ -286,7 +283,7 @@ function Products() {
 
 function Team() {
   return (
-    <section id="equipe" className="section-blueprint scroll-mt-24 border-b border-border py-16 md:py-24">
+    <section id="equipe" className="section-blueprint scroll-mt-32 border-b border-border py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionLabel index="03">Equipe</SectionLabel>
         <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
