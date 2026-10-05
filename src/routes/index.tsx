@@ -337,7 +337,7 @@ function Team() {
             <Reveal key={member.name} delay={index * 90} className="max-sm:last:col-span-2">
               <article
                 tabIndex={0}
-                className="member-card group relative aspect-square overflow-hidden rounded-lg border border-border bg-card outline-none max-sm:[.max-sm\:last\:col-span-2>&]:aspect-[7/4] sm:aspect-[3/4]"
+                className={cn("member-card group relative aspect-square overflow-hidden rounded-lg border border-border bg-card outline-none sm:aspect-[3/4]", index === TEAM.length - 1 && "max-sm:aspect-[7/4]")}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
                 <span className="member-sheen pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
