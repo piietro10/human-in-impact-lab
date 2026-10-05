@@ -292,11 +292,11 @@ function Team() {
       </div>
 
       <div className="mx-auto mt-10 max-w-6xl px-5 sm:px-8">
-        <div className="grid gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
           {TEAM.map((member, index) => (
             <article
               key={member.name}
-              className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40"
+              className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 max-sm:last:col-span-2 max-sm:last:aspect-[7/4] sm:aspect-[3/4]"
             >
               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/35 transition-colors group-hover:text-primary/60">
                 <UserRound className="size-14" strokeWidth={1} />
