@@ -93,7 +93,7 @@ function Index() {
   );
 }
 
-function scrollToSection(event: MouseEvent<HTMLAnchorElement>, href: string) {
+function scrollToSection(event: { preventDefault: () => void }, href: string) {
   const id = href.replace("#", "");
   const section = document.getElementById(id);
   if (!section) return;
@@ -132,12 +132,12 @@ function SiteHeader() {
   }, []);
 
   useEffect(() => {
-    const handler = (event: globalThis.MouseEvent) => {
+    const handler = (event: MouseEvent) => {
       const anchor = (event.target as HTMLElement | null)?.closest?.("a[href^='#']") as HTMLAnchorElement | null;
       if (!anchor) return;
       const href = anchor.getAttribute("href");
       if (!href || href === "#") return;
-      scrollToSection(event as unknown as MouseEvent<HTMLAnchorElement>, href);
+      scrollToSection(event, href);
       setOpen(false);
     };
     document.addEventListener("click", handler);
