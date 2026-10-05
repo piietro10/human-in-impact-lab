@@ -124,9 +124,6 @@ function SiteHeader() {
               </a>
             ))}
           </nav>
-          <Button asChild className="hidden rounded-full px-4 sm:inline-flex">
-            <Link to="/planpaz">Conheça o PlanPaz <ArrowUpRight /></Link>
-          </Button>
           <Button
             type="button"
             variant="outline"
@@ -196,7 +193,7 @@ function Hero() {
 
 function Concept() {
   return (
-    <section id="concepcao" className="section-blueprint scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
+    <section id="concepcao" className="section-blueprint scroll-mt-32 border-b border-border px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div>
@@ -253,7 +250,7 @@ function Concept() {
 
 function Products() {
   return (
-    <section id="produtos" className="section-graphite scroll-mt-24 border-b border-border px-5 py-20 sm:px-8 md:py-28">
+    <section id="produtos" className="section-graphite scroll-mt-32 border-b border-border px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto max-w-6xl">
         <SectionLabel index="02">Nossos produtos</SectionLabel>
         <Reveal className="mt-8 flex flex-wrap items-center gap-2 text-xs uppercase text-muted-foreground sm:gap-3">
@@ -286,21 +283,20 @@ function Products() {
 
 function Team() {
   return (
-    <section id="equipe" className="section-blueprint scroll-mt-24 border-b border-border py-16 md:py-24">
+    <section id="equipe" className="section-blueprint scroll-mt-32 border-b border-border py-16 md:py-24">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionLabel index="03">Equipe</SectionLabel>
         <div className="mt-6 grid grid-cols-[minmax(0,1fr)_auto] items-end gap-4">
           <h2 className="min-w-0 text-4xl font-semibold leading-tight sm:text-5xl">Quem faz a Human In<Dot /></h2>
-          <p className="hidden shrink-0 text-sm text-muted-foreground sm:block">Arraste para conhecer</p>
         </div>
       </div>
 
-      <div className="mt-10 overflow-x-auto px-5 pb-4 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        <div className="mx-auto flex w-max max-w-none snap-x snap-mandatory gap-3 sm:gap-4 lg:w-full lg:max-w-6xl">
+      <div className="mx-auto mt-10 max-w-6xl px-5 sm:px-8">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
           {TEAM.map((member, index) => (
             <article
               key={member.name}
-              className="group relative aspect-[3/4] w-[42vw] max-w-52 shrink-0 snap-start overflow-hidden rounded-lg border border-border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 sm:w-48 lg:min-w-0 lg:flex-1"
+              className="group relative aspect-square overflow-hidden rounded-lg border border-border bg-card transition-[transform,border-color] duration-300 hover:-translate-y-1 hover:border-primary/40 max-sm:last:col-span-2 max-sm:last:aspect-[7/4] sm:aspect-[3/4]"
             >
               <div className="absolute inset-0 flex items-center justify-center text-muted-foreground/35 transition-colors group-hover:text-primary/60">
                 <UserRound className="size-14" strokeWidth={1} />
@@ -322,7 +318,7 @@ function Contact() {
   const fieldClass = "rounded-md border border-input bg-background px-4 py-3 text-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/25";
 
   return (
-    <section id="contato" className="section-graphite scroll-mt-24 px-5 py-20 sm:px-8 md:py-28">
+    <section id="contato" className="section-graphite scroll-mt-32 px-5 py-20 sm:px-8 md:py-28">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:gap-16">
         <div>
           <SectionLabel index="04">Contato</SectionLabel>
