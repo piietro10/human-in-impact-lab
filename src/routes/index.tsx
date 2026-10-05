@@ -93,6 +93,33 @@ function Index() {
   );
 }
 
+function scrollToSection(event: MouseEvent<HTMLAnchorElement>, href: string) {
+  const id = href.replace("#", "");
+  const section = document.getElementById(id);
+  if (!section) return;
+  event.preventDefault();
+
+  const headerSpace = 88;
+  const style = window.getComputedStyle(section);
+  const padTop = parseFloat(style.paddingTop) || 0;
+  const padBottom = parseFloat(style.paddingBottom) || 0;
+  const rect = section.getBoundingClientRect();
+  const contentTop = rect.top + window.scrollY + padTop;
+  const contentHeight = rect.height - padTop - padBottom;
+  const available = window.innerHeight - headerSpace;
+
+  const top =
+    id === "inicio"
+      ? 0
+      : contentHeight < available
+        ? contentTop - headerSpace - (available - contentHeight) / 2
+        : contentTop - headerSpace - 24;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: Math.max(0, top), behavior: reduce ? "auto" : "smooth" });
+  history.replaceState(null, "", href);
+}
+
 function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -102,6 +129,19 @@ function SiteHeader() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const handler = (event: globalThis.MouseEvent) => {
+      const anchor = (event.target as HTMLElement | null)?.closest?.("a[href^='#']") as HTMLAnchorElement | null;
+      if (!anchor) return;
+      const href = anchor.getAttribute("href");
+      if (!href || href === "#") return;
+      scrollToSection(event as unknown as MouseEvent<HTMLAnchorElement>, href);
+      setOpen(false);
+    };
+    document.addEventListener("click", handler);
+    return () => document.removeEventListener("click", handler);
   }, []);
 
   return (
