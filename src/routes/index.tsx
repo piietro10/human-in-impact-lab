@@ -292,7 +292,7 @@ function Team() {
       </div>
 
       <div className="mx-auto mt-10 max-w-6xl px-5 sm:px-8">
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
           {TEAM.map((member, index) => (
             <article
               key={member.name}
