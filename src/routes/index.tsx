@@ -48,11 +48,11 @@ const NAV_LINKS = [
 ];
 
 const TEAM: { name: string; role: string; photo?: string }[] = [
-  { name: "Andrew Gabriel", role: "Scrum Master", photo: "" },
-  { name: "João Manuel", role: "Dev Backend", photo: "" },
-  { name: "Leonardo Ciardi", role: "Dev Frontend", photo: "" },
-  { name: "João Paulo", role: "Design", photo: "" },
-  { name: "Matheus Pietro", role: "Design", photo: "" },
+  { name: "Andrew Gabriel", role: "Scrum Master", photo: "https://avatars.githubusercontent.com/u/207459033?v=4" },
+  { name: "João Manuel", role: "Dev Backend", photo: "https://avatars.githubusercontent.com/u/217834980?v=4" },
+  { name: "Leonardo Ciardi", role: "Dev Frontend", photo: "https://avatars.githubusercontent.com/u/59590474?v=4" },
+  { name: "João Paulo", role: "Design", photo: "https://suap.ifsp.edu.br/media/alunos/fotos/2023/AMn8kB74s6MGVL1wMIm_0ouJO8ou9Agb-qnGjbc6w4A.jpg" },
+  { name: "Matheus Pietro", role: "Design", photo: "https://avatars.githubusercontent.com/u/165861453?v=4" },
 ];
 
 const VALUES: { icon: LucideIcon; name: string; text: string }[] = [
