@@ -47,12 +47,12 @@ const NAV_LINKS = [
   { label: "Equipe", href: "#equipe" },
 ];
 
-const TEAM = [
-  { name: "Andrew Gabriel", role: "Scrum Master" },
-  { name: "João Manuel", role: "Dev Backend" },
-  { name: "Leonardo Ciardi", role: "Dev Frontend" },
-  { name: "João Paulo", role: "Design" },
-  { name: "Matheus Pietro", role: "Design" },
+const TEAM: { name: string; role: string; photo?: string }[] = [
+  { name: "Andrew Gabriel", role: "Scrum Master", photo: "" },
+  { name: "João Manuel", role: "Dev Backend", photo: "" },
+  { name: "Leonardo Ciardi", role: "Dev Frontend", photo: "" },
+  { name: "João Paulo", role: "Design", photo: "" },
+  { name: "Matheus Pietro", role: "Design", photo: "" },
 ];
 
 const VALUES: { icon: LucideIcon; name: string; text: string }[] = [
