@@ -47,12 +47,12 @@ const NAV_LINKS = [
   { label: "Equipe", href: "#equipe" },
 ];
 
-const TEAM = [
-  { name: "Andrew Gabriel", role: "Scrum Master" },
-  { name: "João Manuel", role: "Dev Backend" },
-  { name: "Leonardo Ciardi", role: "Dev Frontend" },
-  { name: "João Paulo", role: "Design" },
-  { name: "Matheus Pietro", role: "Design" },
+const TEAM: { name: string; role: string; photo?: string }[] = [
+  { name: "Andrew Gabriel", role: "Scrum Master", photo: "" },
+  { name: "João Manuel", role: "Dev Backend", photo: "" },
+  { name: "Leonardo Ciardi", role: "Dev Frontend", photo: "" },
+  { name: "João Paulo", role: "Design", photo: "" },
+  { name: "Matheus Pietro", role: "Design", photo: "" },
 ];
 
 const VALUES: { icon: LucideIcon; name: string; text: string }[] = [
@@ -341,12 +341,16 @@ function Team() {
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/15 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 group-focus-visible:opacity-100" />
                 <span className="member-sheen pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center pb-10">
-                  <span className="relative flex items-center justify-center">
-                    <span className="member-ring absolute size-20 rounded-full border border-primary/60" />
-                    <UserRound className="member-icon size-14 text-muted-foreground/35 group-hover:text-primary group-focus-visible:text-primary" strokeWidth={1} />
-                  </span>
-                </div>
+                {member.photo ? (
+                  <img src={member.photo} alt={`Foto de ${member.name}`} loading="lazy" className="absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center pb-10">
+                    <span className="relative flex items-center justify-center">
+                      <span className="member-ring absolute size-20 rounded-full border border-primary/60" />
+                      <UserRound className="member-icon size-14 text-muted-foreground/35 group-hover:text-primary group-focus-visible:text-primary" strokeWidth={1} />
+                    </span>
+                  </div>
+                )}
                 <span className="absolute left-4 top-4 font-mono text-xs text-muted-foreground transition-colors group-hover:text-primary">0{index + 1}</span>
                 <div className="absolute inset-x-0 bottom-0 border-t border-border bg-background/90 p-3 backdrop-blur sm:p-4">
                   <span className="member-bar absolute inset-x-0 top-0 h-px bg-primary" />
